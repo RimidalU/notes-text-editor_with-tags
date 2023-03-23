@@ -2,9 +2,10 @@ import React from 'react'
 
 const TagsContainer = () => {
   return (
-    <div className='tagsContainer'>
-      TagsContainer
-    </div>
+    <section className='tagsContainer'>
+      <h3 className="tagsContainer_name">TagsContainer</h3>
+      <div className="tags_wrapper">  </div>
+    </section>
   )
 }
 
