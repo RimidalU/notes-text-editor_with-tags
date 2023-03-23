@@ -1,14 +1,14 @@
-import React, { MouseEventHandler } from 'react'
+import React from 'react'
 
 interface TagProps {
   tagName: string,
-  filterByTag: (tagName: string) => void
+  filterByTag?: (tagName: string) => void
 }
 
 const Tag = ({ tagName, filterByTag }: TagProps) => {
 
   const heandleFilterByTag = () => {
-    filterByTag(tagName)
+    filterByTag && filterByTag(tagName)
   }
 
   return (

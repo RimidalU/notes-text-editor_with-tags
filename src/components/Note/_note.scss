@@ -1,0 +1,56 @@
+@import '../../sass/variables';
+
+.note {
+    position: relative;
+    border-radius: .4rem;
+    margin-bottom: 0.6rem;
+    padding: 1rem;
+    background-color: $white-color;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    cursor: pointer;
+
+    h2 {
+        padding-bottom: 1rem;
+        color: $primary-color;
+    }
+
+    span {
+        font-size: xx-large;
+    }
+
+    .edit_note {
+        color: $primary-color;
+        margin-right: 1rem;
+    }
+
+    .remove_note {
+        color: $danger-color;
+    }
+
+    .button_set {
+        position: absolute;
+        right: 1rem;
+    }
+
+    .note_description {
+        text-align: start;
+        margin-bottom: 2rem;
+    }
+
+    .note_tags_wrapper {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        background-color: $background-color;
+        right: 0.2rem;
+        bottom: 0.2rem;
+        border-radius: .4rem;
+    }
+
+    li {
+        margin-bottom: 0;
+        scale: 0.8;
+    }
+}

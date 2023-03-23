@@ -1,10 +1,22 @@
 import React from 'react'
+import { INote } from '../../interfaces/types'
+import Note from '../Note/Note'
 
-const NotesContainer = () => {
+interface NotesContainerProps {
+  notes: INote[],
+  editNote: (note: string) => void,
+  removeNote: (note: string) => void
+}
+
+const NotesContainer = ({ notes, removeNote, editNote }: NotesContainerProps) => {
   return (
     <section className='notesContainer'>
       <h3 className="notesContainer_name">NotesContainer</h3>
-      <div className="notes_wrapper">  </div>
+      <ul className="notes_wrapper">
+        {notes && notes.map((note) => (
+          <Note removeNote={removeNote} editNote={editNote} note={note} key={note.id} />
+        ))}
+      </ul>
     </section>
   )
 }
