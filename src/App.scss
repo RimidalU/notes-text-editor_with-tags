@@ -1,0 +1,15 @@
+@import './sass/_variables';
+@import './layouts/Footer/_footer';
+@import './layouts/Header/_header';
+
+.App {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+main {
+	height: 100%;
+}
