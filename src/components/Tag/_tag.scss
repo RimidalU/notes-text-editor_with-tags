@@ -1,0 +1,28 @@
+@import '../../sass/variables';
+
+.tag {
+    border-radius: .4rem;
+    margin-bottom: 0.6rem;
+    padding-right: 1rem;
+    background-color: $white-color;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    b {
+        margin: 0.3rem;
+        padding: 0.3rem;
+        color: $primary-color;
+        background-color: azure;
+        border-radius: 50%;
+    }
+
+    div {
+        margin-left: 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
