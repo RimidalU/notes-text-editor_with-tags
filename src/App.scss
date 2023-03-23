@@ -1,6 +1,10 @@
 @import './sass/_variables';
 @import './layouts/Footer/_footer';
 @import './layouts/Header/_header';
+@import './layouts/Header/_header';
+@import './components/NotesContainer/notesContainer';
+@import './components/TagsContainer/tagsContainer';
+
 
 .App {
 	display: flex;
@@ -12,4 +16,6 @@
 
 main {
 	height: 100%;
+	display: flex;
+	justify-content: space-between;
 }
