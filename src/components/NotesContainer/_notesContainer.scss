@@ -1,8 +1,21 @@
 @import '../../sass/variables';
 
 .notesContainer {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 1rem 0.5rem 1rem 1rem;
     padding: 1rem;
     background-color: $secondary-color;
+}
+
+.notes_wrapper {
+    height: 100%;
+    width: 100%;
+    margin: 0.1rem;
+    background-color: $background-color;
+}
+
+.notesContainer_name {
+    margin-bottom: 1rem;
 }
