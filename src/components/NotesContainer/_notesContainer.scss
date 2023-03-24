@@ -1,6 +1,7 @@
 @import '../../sass/variables';
 
 .notesContainer {
+    position: relative  ;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,5 +21,15 @@
 
     .notesContainer_name {
         margin-bottom: 1rem;
+    }
+
+    .add_note {
+        position: absolute;
+        right: 60px;
+        top: 0;
+        cursor: pointer;
+        font-size: 48px;
+        color: $primary-color;
+        font-weight: bold;
     }
 }

@@ -26,7 +26,7 @@ const Main = () => {
     setData(DB.editNote(noteId, newNote))
   }
 
-  const addNote = (note: INote) => {
+  const addNote = () => {
     const newNote = DB.getInitialState().notes[0]   //TODO: add note maker
     setData(DB.addNote(newNote))
   }
@@ -41,7 +41,7 @@ const Main = () => {
 
   return (
     <main className='main'>
-      <NotesContainer removeNote={removeNote} editNote={editNote} viewNote={viewNote} getNoteTags={getNoteTags} notes={data.notes} />
+      <NotesContainer removeNote={removeNote} editNote={editNote} viewNote={viewNote} addNote={addNote} getNoteTags={getNoteTags} notes={data.notes} />
       <TagsContainer filterByTag={filterByTag} tags={data.tags} />
     </main>
   )
