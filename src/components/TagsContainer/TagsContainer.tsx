@@ -4,7 +4,7 @@ import Tag from '../Tag/Tag'
 
 interface TagsContainerProps {
   tags: ITag[],
-  filterByTag: (tagId: string) => void
+  filterByTag?: (tagId: string) => void
 }
 
 const TagsContainer = ({ tags, filterByTag }: TagsContainerProps) => {

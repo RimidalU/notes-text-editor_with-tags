@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { INote, IRootJson, ITag } from './../interfaces/types';
+import { IcurrentNote, INote, IRootJson, ITag } from './../interfaces/types';
 import initialData from './InitialData.json'
 
 export const initialState: IRootJson = { notes: [], tags: [] }
@@ -23,11 +23,12 @@ export const removeNote = (noteId: string) => {
     return data
 }
 
-export const addNote = (note: INote) => {
-    const newNote = { ...note, id: uuidv4() }
+export const addNote = (note: IcurrentNote) => {
+
+    const newNote: INote = { ...note, id: uuidv4() }
     data = {
         notes: [newNote, ...data.notes],
-        tags: data.tags
+        tags: [...data.tags]
     }
     return data
 }
@@ -40,7 +41,7 @@ export const editNote = (noteId: string, newNote: INote) => {
 
     data = {
         notes: newNotesSet,
-        tags: data.tags
+        tags: [...data.tags]
     }
 
     return data
@@ -62,13 +63,13 @@ export const removeTag = (tagId: string) => {
     return data
 }
 
-export const addTag = (tag: ITag) => {
-    const newTag = { ...tag, id: uuidv4() }
+export const addTag = (name: string) => {
+    const newTag = { name, id: uuidv4() }
     data = {
         notes: data.notes,
         tags: [newTag, ...data.tags]
     }
-    return data
+    return newTag.id
 }
 
 export const getByNoteId = (noteId: string) => {

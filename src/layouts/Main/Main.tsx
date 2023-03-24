@@ -1,44 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import NotesContainer from '../../components/NotesContainer/NotesContainer'
 import TagsContainer from '../../components/TagsContainer/TagsContainer'
-import { INote, IRootJson } from '../../interfaces/types'
 
-import * as DB from '../../data/db'
+import { IRootJson, ITag } from '../../interfaces/types'
 
-const Main = () => {
-  const [data, setData] = useState<IRootJson>(DB.initialState)
+interface MainProps {
+  editNote: (noteId: string) => void,
+  addNote: () => void,
+  filterByTag?: (tagId: string) => void,
+  removeNote: (noteId: string) => void,
+  viewNote: (noteId: string) => void,
+  getNoteTags: (noteId: string) => ITag[],
+  data: IRootJson
+}
 
-  useEffect(() => {
-    setData(DB.getInitialState())
-  }, [])
-
-  const filterByTag = (tagId: string) => {
-    console.log(tagId);
-  }
-
-  const removeNote = (noteId: string) => {
-    setData(DB.removeNote(noteId))
-  }
-
-  const editNote = (noteId: string) => {
-    const note = DB.getNote(noteId)  //TODO: add note maker
-    const newNote = {...note, name: new Date().toString()}
-    setData(DB.editNote(noteId, newNote))
-  }
-
-  const addNote = () => {
-    const newNote = DB.getInitialState().notes[0]   //TODO: add note maker
-    setData(DB.addNote(newNote))
-  }
-
-  const viewNote = (noteId: string) => {           //TODO: add note viewer
-    console.log('handleNoteView' + noteId)
-  }
-
-  const getNoteTags = (noteId: string) => {
-    return DB.getByNoteId(noteId)
-  }
+const Main = ({ addNote, editNote, filterByTag, removeNote, viewNote, getNoteTags, data }: MainProps) => {
 
   return (
     <main className='main'>

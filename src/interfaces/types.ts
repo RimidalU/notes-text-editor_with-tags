@@ -14,3 +14,10 @@ export interface INote {
     description: string
     tags: string[]
 }
+
+export interface IcurrentNote {
+    id?: string
+    name: string
+    description: string
+    tags: string[]
+}
