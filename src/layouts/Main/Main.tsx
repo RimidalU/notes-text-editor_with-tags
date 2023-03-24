@@ -22,7 +22,8 @@ const Main = () => {
   }
 
   const editNote = (noteId: string) => {
-    const newNote = DB.getInitialState().notes[0]  //TODO: add note maker
+    const note = DB.getNote(noteId)  //TODO: add note maker
+    const newNote = {...note, name: new Date().toString()}
     setData(DB.editNote(noteId, newNote))
   }
 
