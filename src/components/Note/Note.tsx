@@ -34,7 +34,6 @@ const Note = ({ note, removeNote, editNote, viewNote, getNoteTags }: NoteProps) 
         <p className="note_description">{note.description}</p>
         <ul className="note_tags_wrapper">
           {noteTags && noteTags.map((noteTag) => (
-            // <Tag tagName={tagName} key={`${tagName}-${index}`} />
             <Tag tag={noteTag} key={noteTag.id} />                    // filterByTag={filterByTag} ??
           ))}
         </ul>
