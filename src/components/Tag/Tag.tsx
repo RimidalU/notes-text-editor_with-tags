@@ -7,7 +7,6 @@ interface TagProps {
 }
 
 const Tag = ({ tag, filterByTag }: TagProps) => {
-  console.log(tag.name);
 
   const heandleFilterByTag = () => {
     filterByTag && filterByTag(tag.id)

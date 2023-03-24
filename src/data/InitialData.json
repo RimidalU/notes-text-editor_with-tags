@@ -23,8 +23,8 @@
             "name": "POST 1",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, aut eaque sunt illo accusantium omnis aliquid explicabo animi ipsa autem",
             "tags": [
-                "TestTag1",
-                "TestTag2"
+                "tag-id1",
+                "tag-id3"
             ]
         },
         {
@@ -32,8 +32,8 @@
             "name": "POST 2",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, aut eaque sunt illo accusantium omnis aliquid explicabo animi Ab, aut eaque sunt illo accusantium omnis aliquid explicabo animi ipsa autemAb, aut eaque sunt illo accusantium omnis aliquid explicabo animi ipsa autemipsa autem",
             "tags": [
-                "TestTag1",
-                "TestTag3"
+                "tag-id2",
+                "tag-id1"
             ]
         },
         {
@@ -41,7 +41,7 @@
             "name": "POST 3",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, aut eaque sunt illo accusantium omnis aliquid explicabo animi ipsa autem",
             "tags": [
-                "TestTag3"
+                "tag-id1"
             ]
         }
     ]
