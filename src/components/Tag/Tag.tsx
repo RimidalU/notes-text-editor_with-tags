@@ -1,20 +1,22 @@
 import React from 'react'
+import { ITag } from '../../interfaces/types'
 
 interface TagProps {
-  tagName: string,
-  filterByTag?: (tagName: string) => void
+  tag: ITag,
+  filterByTag?: (tagId: string) => void
 }
 
-const Tag = ({ tagName, filterByTag }: TagProps) => {
+const Tag = ({ tag, filterByTag }: TagProps) => {
+  console.log(tag.name);
 
   const heandleFilterByTag = () => {
-    filterByTag && filterByTag(tagName)
+    filterByTag && filterByTag(tag.id)
   }
 
   return (
     <li className='tag' onClick={heandleFilterByTag}>
       <b>&#35;</b>
-      <div>{tagName}</div>
+      <div>{tag.name}</div>
     </li>
   )
 }

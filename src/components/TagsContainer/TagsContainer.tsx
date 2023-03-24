@@ -1,18 +1,20 @@
 import React from 'react'
+import { ITag } from '../../interfaces/types'
 import Tag from '../Tag/Tag'
 
 interface TagsContainerProps {
-  tags: string[],
-  filterByTag: (tagName: string) => void
+  tags: ITag[],
+  filterByTag: (tagId: string) => void
 }
 
 const TagsContainer = ({ tags, filterByTag }: TagsContainerProps) => {
+
   return (
     <section className='tagsContainer'>
       <h3 className="tagsContainer_name">TagsContainer</h3>
       <ul className="tags_wrapper">
-        {tags && tags.map((tagName, index) => (
-          <Tag filterByTag={filterByTag} tagName={tagName} key={`${tagName}-${index}`} />
+        {tags && tags.map(tag => (
+          <Tag filterByTag={filterByTag} tag={tag} key={tag.id} />
         ))}
       </ul>
     </section>

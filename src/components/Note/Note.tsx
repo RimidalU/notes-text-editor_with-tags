@@ -1,6 +1,6 @@
 import React from 'react'
 import { INote } from '../../interfaces/types'
-import Tag from '../Tag/Tag'
+// import Tag from '../Tag/Tag'
 
 interface NoteProps {
   note: INote,
@@ -11,17 +11,15 @@ interface NoteProps {
 const Note = ({ note, removeNote, editNote }: NoteProps) => {
 
   const handleNoteView = () => {
-    console.log('handleNoteView')
+    console.log('handleNoteView' + note.id)
   }
 
   const handleRemoveNote = () => {
     removeNote(note.id)
-    console.log('handleNoteRemove')
   }
 
   const handleEditNote = () => {
     editNote(note.id)
-    console.log('handleNoteEdit')
   }
 
   return (
@@ -30,9 +28,9 @@ const Note = ({ note, removeNote, editNote }: NoteProps) => {
         <h2 className="note_name">{note.name}</h2>
         <p className="note_description">{note.description}</p>
         <ul className="note_tags_wrapper">
-          {note.tags && note.tags.map((tagName, index) => (
+          {/* {note.tags && note.tags.map((tagName, index) => (
             <Tag tagName={tagName} key={`${tagName}-${index}`} />
-          ))}
+          ))} */}
         </ul>
       </div>
       <div className="button_set">

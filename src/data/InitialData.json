@@ -1,0 +1,48 @@
+{
+    "tags": [
+        {
+            "id": "tag-id1",
+            "name": "TestTag1"
+        },
+        {
+            "id": "tag-id2",
+            "name": "TestTag2"
+        },
+        {
+            "id": "tag-id3",
+            "name": "TestTag3"
+        },
+        {
+            "id": "tag-id4",
+            "name": "FakeTag"
+        }
+    ],
+    "notes": [
+        {
+            "id": "post-id1",
+            "name": "POST 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, aut eaque sunt illo accusantium omnis aliquid explicabo animi ipsa autem",
+            "tags": [
+                "TestTag1",
+                "TestTag2"
+            ]
+        },
+        {
+            "id": "post-id2",
+            "name": "POST 2",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, aut eaque sunt illo accusantium omnis aliquid explicabo animi Ab, aut eaque sunt illo accusantium omnis aliquid explicabo animi ipsa autemAb, aut eaque sunt illo accusantium omnis aliquid explicabo animi ipsa autemipsa autem",
+            "tags": [
+                "TestTag1",
+                "TestTag3"
+            ]
+        },
+        {
+            "id": "post-id3",
+            "name": "POST 3",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, aut eaque sunt illo accusantium omnis aliquid explicabo animi ipsa autem",
+            "tags": [
+                "TestTag3"
+            ]
+        }
+    ]
+}
