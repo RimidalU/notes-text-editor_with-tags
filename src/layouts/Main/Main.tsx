@@ -31,9 +31,17 @@ const Main = () => {
     setData(DB.addNote(newNote))
   }
 
+  const viewNote = (noteId: string) => {           //TODO: add note viewer
+    console.log('handleNoteView' + noteId)
+  }
+
+  const getNoteTags = (noteId: string) => {
+    return DB.getByNoteId(noteId)
+  }
+
   return (
     <main className='main'>
-      <NotesContainer removeNote={removeNote} editNote={editNote} notes={data.notes} />
+      <NotesContainer removeNote={removeNote} editNote={editNote} viewNote={viewNote} getNoteTags={getNoteTags} notes={data.notes} />
       <TagsContainer filterByTag={filterByTag} tags={data.tags} />
     </main>
   )

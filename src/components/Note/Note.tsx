@@ -1,17 +1,20 @@
 import React from 'react'
-import { INote } from '../../interfaces/types'
-// import Tag from '../Tag/Tag'
+import { INote, ITag } from '../../interfaces/types'
+import Tag from '../Tag/Tag'
 
 interface NoteProps {
   note: INote,
-  editNote: (note: string) => void,
-  removeNote: (note: string) => void
+  // noteTags: ITag[],
+  editNote: (noteId: string) => void,
+  removeNote: (noteId: string) => void,
+  viewNote: (noteId: string) => void,
+  getNoteTags: (noteId: string) => ITag[],
 }
 
-const Note = ({ note, removeNote, editNote }: NoteProps) => {
+const Note = ({ note, removeNote, editNote, viewNote, getNoteTags }: NoteProps) => {
 
   const handleNoteView = () => {
-    console.log('handleNoteView' + note.id)
+    viewNote(note.id)
   }
 
   const handleRemoveNote = () => {
@@ -22,15 +25,18 @@ const Note = ({ note, removeNote, editNote }: NoteProps) => {
     editNote(note.id)
   }
 
+  const noteTags = getNoteTags(note.id)
+
   return (
     <li className='note' >
       <div onClick={handleNoteView}>
         <h2 className="note_name">{note.name}</h2>
         <p className="note_description">{note.description}</p>
         <ul className="note_tags_wrapper">
-          {/* {note.tags && note.tags.map((tagName, index) => (
-            <Tag tagName={tagName} key={`${tagName}-${index}`} />
-          ))} */}
+          {noteTags && noteTags.map((noteTag) => (
+            // <Tag tagName={tagName} key={`${tagName}-${index}`} />
+            <Tag tag={noteTag} key={noteTag.id} />                    // filterByTag={filterByTag} ??
+          ))}
         </ul>
       </div>
       <div className="button_set">
