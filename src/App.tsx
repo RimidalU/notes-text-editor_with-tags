@@ -6,6 +6,7 @@ import Modal from './components/Modal/Modal'
 import { useEffect, useState } from 'react'
 import { INote, IRootJson } from './interfaces/types'
 import * as DB from './data/db'
+import Filter from './utils/filter'
 
 
 function App() {
@@ -13,18 +14,23 @@ function App() {
   const [data, setData] = useState<IRootJson>(DB.initialState)
   const [modalItemId, setModalItemId] = useState<INote | undefined>(undefined)
   const [filterValues, setfilterValues] = useState<string[]>([])
+  const [filteredList, setFilteredList] = useState<IRootJson>(data);
 
   useEffect(() => {
     setData(DB.getInitialState())
   }, [])
 
-  console.log(filterValues);
-
+  useEffect(() => {
+    const filteringData = Filter(data.notes, filterValues)
+    setFilteredList({
+      notes: filterValues.length ? filteringData : data.notes,
+      tags: data.tags
+    });
+  }, [data.notes, filterValues]);
 
   const filterByTag = (tagId: string) => {
     const newFilter = filterValues.includes(tagId) ? filterValues.filter(item => item !== tagId) : [...filterValues, tagId]
     setfilterValues(newFilter)
-    setData(DB.filterByTag(tagId))
   }
 
   const removeNote = (noteId: string) => {
@@ -58,7 +64,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Main data={data} editNote={handleaEditNote} addNote={handleaddNote} getNoteTags={getNoteTags} viewNote={viewNote} filterByTag={filterByTag} removeNote={removeNote} />
+      <Main data={filteredList} editNote={handleaEditNote} addNote={handleaddNote} getNoteTags={getNoteTags} viewNote={viewNote} filterByTag={filterByTag} removeNote={removeNote} />
       <Footer />
       <Modal open={openModal} currentNote={modalItemId} setOpenModal={handleTogleModal} setData={setData} />
     </div>
