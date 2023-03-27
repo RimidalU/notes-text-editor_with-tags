@@ -37,10 +37,6 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     };
   }, [name]);
 
-  const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDescription(description);
@@ -50,8 +46,16 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     };
   }, [description]);
 
+  
+  
+  const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
   const updateDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
+    console.log(e.target.value);
+    
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -62,12 +66,17 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
 
     const newNote = {
       name: name || '',
-      description: description || "",
+      description: description || '',
       tags: newNoteTagsId
     }
 
     setData(DB.addNote(newNote))
     setOpenModal(false)
+  }
+
+  const handleReset = () => {
+    setName('')
+    setDescription('')
   }
 
   if (!open) {
@@ -80,7 +89,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
           <h2 className="modal_title">Create a new note</h2>
           <span className='close_btn' onClick={() => setOpenModal(false)}>&#x2718;</span>
         </header>
-        <form id='noteForm' className='note_form' onSubmit={handleSubmit}>
+        <form id='noteForm' className='note_form' onSubmit={handleSubmit} onReset={handleReset}>
           <div className='form_group'>
             <label htmlFor="noteName">Enter note title:</label>
             <input type="text" id="noteName" name="noteName" placeholder={"Enter note title"} onChange={updateName} value={name} required autoFocus />
