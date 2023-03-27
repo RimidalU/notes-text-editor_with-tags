@@ -54,8 +54,6 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
 
   const updateDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
-    console.log(e.target.value);
-    
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -65,12 +63,13 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     })
 
     const newNote = {
+      id: currentNote?.id || '',
       name: name || '',
       description: description || '',
       tags: newNoteTagsId
     }
-
-    setData(DB.addNote(newNote))
+ 
+    currentNote?.id ? setData(DB.editNote(currentNote.id, newNote)) : setData(DB.addNote(newNote))
     setOpenModal(false)
   }
 
