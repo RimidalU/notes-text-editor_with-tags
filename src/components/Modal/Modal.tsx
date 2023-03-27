@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { INote, IRootJson, ITag } from '../../interfaces/types'
 import * as DB from '../../data/db'
 import Tag from '../Tag/Tag'
+import TagDetective from '../../utils/tagDetective'
 
 interface ModalProps {
   open: boolean,
@@ -14,6 +15,8 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
   const [name, setName] = useState<string | undefined>(undefined)
   const [description, setDescription] = useState<string | undefined>(undefined)
   const [tags, setTags] = useState<ITag[]>([])
+  const [newTags, setNewTags] = useState<string[]>([])
+
 
   const newNoteTags: string[] = ['vfvdf', 'rfeeegg']   // add usestae 
 
@@ -39,6 +42,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+      description && setNewTags(TagDetective(description))
       setDescription(description);
     }, 600);
     return () => {
@@ -46,8 +50,8 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     };
   }, [description]);
 
-  
-  
+
+
   const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
@@ -68,7 +72,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
       description: description || '',
       tags: newNoteTagsId
     }
- 
+
     currentNote?.id ? setData(DB.editNote(currentNote.id, newNote)) : setData(DB.addNote(newNote))
     setOpenModal(false)
   }
@@ -97,6 +101,11 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
             <label htmlFor="noteDescription">Enter note description:</label>
             <textarea id="noteDescription" name="noteDescription" placeholder="Enter note description" rows={4} cols={50} onChange={updateDescription} value={description} required />
           </div>
+          {newTags.length > 0 && <div className="tagsSet newSet">
+            {newTags.map((tag, index) => (
+              <Tag tag={{ name: tag, id: index.toString() }} key={index} />
+            ))}
+          </div>}
           <div className="tagsSet">
             {tags && tags.map(tag => (
               <Tag tag={tag} key={tag.id} />

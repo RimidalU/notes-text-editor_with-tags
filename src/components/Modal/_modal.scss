@@ -58,6 +58,25 @@
                 }
             }
 
+            .newSet {
+                .tag {
+                    cursor: default;
+                }
+            }
+
+            .tagsSet {
+                display: flex;
+                flex-wrap: wrap;
+
+                .tag {
+                    margin-right: 0.5rem;
+                }
+
+                .newTag {
+                    margin-right: 1rem;
+                }
+            }
+
             .button_set {
                 display: flex;
                 justify-content: end;
