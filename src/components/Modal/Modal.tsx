@@ -18,7 +18,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
   const [newTags, setNewTags] = useState<string[]>([])
 
 
-  const newNoteTags: string[] = ['vfvdf', 'rfeeegg']   // add usestae 
+  // const newNoteTags: string[] = ['vfvdf', 'rfeeegg']   // add usestae 
 
   useEffect(() => {
     setName(currentNote?.name || undefined)
@@ -62,7 +62,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newNoteTagsId = newNoteTags.map(tag => {
+    const newNoteTagsId = newTags.map(tag => {
       return DB.addTag(tag)
     })
 
@@ -74,6 +74,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     }
 
     currentNote?.id ? setData(DB.editNote(currentNote.id, newNote)) : setData(DB.addNote(newNote))
+    setNewTags([])
     setOpenModal(false)
   }
 
