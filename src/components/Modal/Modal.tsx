@@ -17,9 +17,6 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
   const [tags, setTags] = useState<ITag[]>([])
   const [newTags, setNewTags] = useState<string[]>([])
 
-
-  // const newNoteTags: string[] = ['vfvdf', 'rfeeegg']   // add usestae 
-
   useEffect(() => {
     setName(currentNote?.name || undefined)
     setDescription(currentNote?.description || undefined)
@@ -42,15 +39,13 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      description && setNewTags(TagDetective(description))
+      description && setNewTags([... new Set(TagDetective(description))])
       setDescription(description);
     }, 600);
     return () => {
       clearTimeout(timeout);
     };
   }, [description]);
-
-
 
   const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
