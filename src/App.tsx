@@ -12,14 +12,19 @@ function App() {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [data, setData] = useState<IRootJson>(DB.initialState)
   const [modalItemId, setModalItemId] = useState<INote | undefined>(undefined)
+  const [filterValues, setfilterValues] = useState<string[]>([])
 
   useEffect(() => {
     setData(DB.getInitialState())
   }, [])
 
+  console.log(filterValues);
+
 
   const filterByTag = (tagId: string) => {
-    console.log(tagId);
+    const newFilter = filterValues.includes(tagId) ? filterValues.filter(item => item !== tagId) : [...filterValues, tagId]
+    setfilterValues(newFilter)
+    setData(DB.filterByTag(tagId))
   }
 
   const removeNote = (noteId: string) => {
