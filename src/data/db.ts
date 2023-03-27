@@ -64,12 +64,18 @@ export const removeTag = (tagId: string) => {
 }
 
 export const addTag = (name: string) => {
-    const newTag = { name, id: uuidv4() }
-    data = {
-        notes: data.notes,
-        tags: [newTag, ...data.tags]
+
+    const currentTagInDB = data.tags.find(tag => tag.name === name)
+
+    if (!currentTagInDB) {
+        const newTag = { name, id: uuidv4() }
+        data = {
+            notes: data.notes,
+            tags: [newTag, ...data.tags]
+        }
+        return newTag.id
     }
-    return newTag.id
+    return currentTagInDB.id
 }
 
 export const getByNoteId = (noteId: string) => {
