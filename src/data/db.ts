@@ -86,12 +86,5 @@ export const getByNoteId = (noteId: string) => {
 }
 
 export const filterByTag = (tagId: string) => {
-
-    data = {
-        notes: data.notes.filter(note => note.tags.includes(tagId)),
-        tags: data.tags
-    }
-    
-    return data
-
+    return data.notes.filter(note => note.tags.includes(tagId))
 }
