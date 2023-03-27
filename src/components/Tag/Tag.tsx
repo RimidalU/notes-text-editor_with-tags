@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ITag } from '../../interfaces/types'
 
 interface TagProps {
@@ -8,12 +8,19 @@ interface TagProps {
 
 const Tag = ({ tag, filterByTag }: TagProps) => {
 
+  const [isActive, setActive] = useState(false);
+
+  const ToggleClass = () => {
+    filterByTag && setActive(!isActive);
+  };
+
   const heandleFilterByTag = () => {
     filterByTag && filterByTag(tag.id)
+    ToggleClass()
   }
 
   return (
-    <li className='tag' onClick={heandleFilterByTag}>
+    <li className={isActive ? "active tag" : "tag"} onClick={heandleFilterByTag}>
       <b>&#35;</b>
       <div>{tag.name}</div>
     </li>
