@@ -69,13 +69,18 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     }
 
     currentNote?.id ? setData(DB.editNote(currentNote.id, newNote)) : setData(DB.addNote(newNote))
-    setNewTags([])
-    setOpenModal(false)
+    handleCloseModal()
   }
 
   const handleReset = () => {
     setName('')
     setDescription('')
+    setNewTags([])
+  }
+
+  const handleCloseModal = () => {
+    setNewTags([])
+    setOpenModal(false)
   }
 
   if (!open) {
@@ -86,7 +91,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
       <div className="modal_wrapper">
         <header>
           <h2 className="modal_title">Create a new note</h2>
-          <span className='close_btn' onClick={() => setOpenModal(false)}>&#x2718;</span>
+          <span className='close_btn' onClick={handleCloseModal}>&#x2718;</span>
         </header>
         <form id='noteForm' className='note_form' onSubmit={handleSubmit} onReset={handleReset}>
           <div className='form_group'>
@@ -102,11 +107,11 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
               <Tag tag={{ name: tag, id: index.toString() }} key={index} />
             ))}
           </div>}
-          <div className="tagsSet">
+          {tags.length > 0 && <div className="tagsSet">
             {tags && tags.map(tag => (
               <Tag tag={tag} key={tag.id} />
             ))}
-          </div>
+          </div>}
           <div className="button_set">
             <button className='reset_btn' type="reset">&#x2718;</button>
             <button className='submit_btn' type="submit">&#10004;</button>
