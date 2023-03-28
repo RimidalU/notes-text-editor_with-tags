@@ -4,7 +4,6 @@ import Tag from '../Tag/Tag'
 
 interface NoteProps {
   note: INote,
-  // noteTags: ITag[],
   editNote: (noteId: string) => void,
   removeNote: (noteId: string) => void,
   viewNote: (noteId: string) => void,
