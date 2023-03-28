@@ -11,7 +11,7 @@ const TagsContainer = ({ tags, filterByTag }: TagsContainerProps) => {
 
   return (
     <section className='tagsContainer'>
-      <h3 className="tagsContainer_name">TagsContainer</h3>
+      <h3 className="tagsContainer_name">Tags</h3>
       <ul className="tags_wrapper">
         {tags && tags.map(tag => (
           <Tag filterByTag={filterByTag} tag={tag} key={tag.id} />

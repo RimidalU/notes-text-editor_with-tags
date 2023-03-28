@@ -19,7 +19,7 @@ const NotesContainer = ({ notes, getNoteTags, removeNote, editNote, viewNote, ad
 
   return (
     <section className='notesContainer'>
-      <h3 className="notesContainer_name">NotesContainer</h3>
+      <h3 className="notesContainer_name">Notes</h3>
       <span className='add_note' onClick={handleAddNote}>&#10010;</span>
       <ul className="notes_wrapper">
         {notes && notes.map((note) => (
