@@ -43,9 +43,11 @@ export const editNote = (noteId: string, newNote: INote) => {
         return note.id === noteId ? newNote : note
     })
 
+    const pureTags = remoteNoteTagSanitizer(data.tags, noteId, newNotesSet)
+
     data = {
         notes: newNotesSet,
-        tags: [...data.tags]
+        tags: [...pureTags]
     }
 
     return data
