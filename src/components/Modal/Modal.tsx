@@ -107,11 +107,6 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
               <Tag tag={{ name: tag, id: index.toString() }} key={index} />
             ))}
           </div>}
-          {tags.length > 0 && <div className="tagsSet">
-            {tags && tags.map(tag => (
-              <Tag tag={tag} key={tag.id} />
-            ))}
-          </div>}
           <div className="button_set">
             <button className='reset_btn' type="reset">&#x2718;</button>
             <button className='submit_btn' type="submit">&#10004;</button>
