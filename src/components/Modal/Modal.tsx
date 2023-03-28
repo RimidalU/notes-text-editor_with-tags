@@ -5,6 +5,7 @@ import Tag from '../Tag/Tag'
 import TagDetective from '../../utils/tagDetective'
 import ContenteditableTextarea from '../ContenteditableTextarea/ContenteditableTextarea'
 import highlighter from '../../utils/highlighter'
+import { ContentEditableEvent } from 'react-contenteditable'
 
 interface ModalProps {
   open: boolean,
@@ -18,8 +19,6 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
   const [description, setDescription] = useState<string | undefined>(undefined)
   const [tags, setTags] = useState<ITag[]>([])
   const [newTags, setNewTags] = useState<string[]>([])
-  const [descriptionWithBacklight, setDescriptionWithBacklight] = useState<string | undefined>(description)
-
 
   useEffect(() => {
     setName(currentNote?.name || undefined)
@@ -35,29 +34,16 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setName(name);
-    }, 600);
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [name]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
       description && setNewTags([... new Set(TagDetective(description))])
-      setDescription(description);
-      setDescriptionWithBacklight(highlighter(description || ''))
+
     }, 600);
     return () => {
       clearTimeout(timeout);
     };
-  }, [description]);
+  }, [description, name]);
 
   const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
-  };
-
-  const updateDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(e.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -88,8 +74,8 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     setOpenModal(false)
   }
 
-  const setContentDesc = (evtText: any) => {
-    // setDescription(evtText.html)
+  const setContentDesc = (evt: ContentEditableEvent) => {
+    setDescription(evt.currentTarget.innerText)
   }
 
   if (!open) {
@@ -109,8 +95,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
           </div>
           <div className='form_group'>
             <label htmlFor="noteDescription">Enter note description:</label>
-            <textarea id="noteDescription" name="noteDescription" placeholder="Enter note description" rows={4} wrap="soft" cols={50} onChange={updateDescription} value={description} required />
-            <ContenteditableTextarea text={descriptionWithBacklight || ''} setContentDesc={setContentDesc} />
+            <ContenteditableTextarea text={highlighter(description || '')} setContentDesc={setContentDesc} />
           </div>
           {newTags.length > 0 && <div className="tagsSet newSet">
             {newTags.map((tag, index) => (

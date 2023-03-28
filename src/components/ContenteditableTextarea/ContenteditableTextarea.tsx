@@ -1,24 +1,20 @@
 import React from 'react'
-import ContentEditable from "react-contenteditable";
+import ContentEditable, { ContentEditableEvent } from "react-contenteditable";
 
 
 interface ContenteditableTextareaProps {
-  text: string ,
-  setContentDesc: (evtText: any) => void,
+  text: string,
+  setContentDesc: (evt: ContentEditableEvent) => void,
 }
 
-const ContenteditableTextarea = ({setContentDesc, text = ''}:ContenteditableTextareaProps) => {
-
-  const handleChange = (evt: any) => {
-    setContentDesc({ html: evt.target.value })
-  };
+const ContenteditableTextarea = ({ setContentDesc, text = '' }: ContenteditableTextareaProps) => {
 
   return (
     <ContentEditable
-    className='contenteditableTextarea'
+      className='contenteditableTextarea'
       html={text} // innerHTML of the editable div
       disabled={false} // use true to disable edition
-      onChange={handleChange} // handle innerHTML change
+      onChange={setContentDesc} // handle innerHTML change
 
     />
   )
