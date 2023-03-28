@@ -15,14 +15,14 @@ interface ModalProps {
 }
 
 const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
-  const [name, setName] = useState<string | undefined>(undefined)
-  const [description, setDescription] = useState<string | undefined>(undefined)
+  const [name, setName] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
   const [tags, setTags] = useState<ITag[]>([])
   const [newTags, setNewTags] = useState<string[]>([])
 
   useEffect(() => {
-    setName(currentNote?.name || undefined)
-    setDescription(currentNote?.description || undefined)
+    setName(currentNote?.name || "")
+    setDescription(currentNote?.description || '')
 
     let ItemTags = currentNote?.tags && currentNote?.tags.map(tagId => {
       return DB.getTag(tagId)[0]
