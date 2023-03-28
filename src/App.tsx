@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     const filteringData = Filter(data.notes, filterValues)
     setFilteredList({
-      notes: filterValues.length ? filteringData : data.notes,
+      notes: filteringData.length ? filteringData : data.notes,
       tags: data.tags
     });
   }, [data.notes, filterValues]);
