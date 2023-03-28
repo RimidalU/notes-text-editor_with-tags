@@ -3,6 +3,8 @@ import { INote, IRootJson, ITag } from '../../interfaces/types'
 import * as DB from '../../data/db'
 import Tag from '../Tag/Tag'
 import TagDetective from '../../utils/tagDetective'
+import ContenteditableTextarea from '../ContenteditableTextarea/ContenteditableTextarea'
+import highlighter from '../../utils/highlighter'
 
 interface ModalProps {
   open: boolean,
@@ -16,6 +18,8 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
   const [description, setDescription] = useState<string | undefined>(undefined)
   const [tags, setTags] = useState<ITag[]>([])
   const [newTags, setNewTags] = useState<string[]>([])
+  const [descriptionWithBacklight, setDescriptionWithBacklight] = useState<string | undefined>(description)
+
 
   useEffect(() => {
     setName(currentNote?.name || undefined)
@@ -41,6 +45,7 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     const timeout = setTimeout(() => {
       description && setNewTags([... new Set(TagDetective(description))])
       setDescription(description);
+      setDescriptionWithBacklight(highlighter(description || ''))
     }, 600);
     return () => {
       clearTimeout(timeout);
@@ -83,6 +88,10 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
     setOpenModal(false)
   }
 
+  const setContentDesc = (evtText: any) => {
+    // setDescription(evtText.html)
+  }
+
   if (!open) {
     return null
   }
@@ -100,7 +109,8 @@ const Modal = ({ open, currentNote, setOpenModal, setData }: ModalProps) => {
           </div>
           <div className='form_group'>
             <label htmlFor="noteDescription">Enter note description:</label>
-            <textarea id="noteDescription" name="noteDescription" placeholder="Enter note description" rows={4} cols={50} onChange={updateDescription} value={description} required />
+            <textarea id="noteDescription" name="noteDescription" placeholder="Enter note description" rows={4} wrap="soft" cols={50} onChange={updateDescription} value={description} required />
+            <ContenteditableTextarea text={descriptionWithBacklight || ''} setContentDesc={setContentDesc} />
           </div>
           {newTags.length > 0 && <div className="tagsSet newSet">
             {newTags.map((tag, index) => (
