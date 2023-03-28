@@ -1,0 +1,11 @@
+@import '../../sass/variables';
+
+.contenteditableTextarea {
+    font-family: DejaVu Sans Mono;
+    font-size: 1.2rem;
+    text-align: left;
+    color: #000;
+    padding: 0.5rem;
+    border: 1px solid $background-color;
+    border-radius: 0.4rem;
+}
