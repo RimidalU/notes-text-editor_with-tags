@@ -44,7 +44,7 @@
 
 ## How To Use
 
-Run [Live Demo](http://php-contact-form.epizy.com/)
+Run [Live Demo](https://euphonious-heliotrope-5b2c49.netlify.app/)
 
 ![tutorial][tutorial]
 
