@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import remoteNoteTagSanitizer from '../utils/remoteNoteTagSanitizer';
 
 import { IcurrentNote, INote, IRootJson, ITag } from './../interfaces/types';
 import initialData from './InitialData.json'
@@ -16,10 +17,13 @@ export const getNote = (noteId: string) => {
 }
 
 export const removeNote = (noteId: string) => {
+    const newDataSet = data.notes.filter(note => note.id !== noteId)
+    const pureTags = remoteNoteTagSanitizer(data.tags, noteId, newDataSet)
     data = {
-        notes: data.notes.filter(note => note.id !== noteId),
-        tags: data.tags
+        notes: newDataSet,
+        tags: [...pureTags]
     }
+
     return data
 }
 
@@ -80,11 +84,11 @@ export const addTag = (name: string) => {
 
 export const getByNoteId = (noteId: string) => {
 
-    const currentNoteTagsId = getNote(noteId).tags
+    const currentNoteTagsId = getNote(noteId)?.tags || []
 
     return data.tags.filter((tag) => currentNoteTagsId.includes(tag.id));
 }
 
-export const filterByTag = (tagId: string) => {
-    return data.notes.filter(note => note.tags.includes(tagId))
+export const filterByTag = (tagId: string, notesArr: INote[] = data.notes) => {
+    return notesArr.filter(note => note.tags.includes(tagId))
 }
